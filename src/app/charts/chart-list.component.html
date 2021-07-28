@@ -1,0 +1,47 @@
+<html>
+    <div>
+        {{pageTitle}}
+    </div>
+
+    <div>
+        <button (click)="searchLargeCaps()">Large Cap Coins</button>
+        <button (click)="searchMidCaps()">Mid Cap Coins</button>
+        <button (click)="searchDEFI()">DEFI</button>
+        <button (click)="searchNFTs()">NFTs</button>
+
+    </div>
+    <div class='table-responsive'>
+        <table class='table'
+            *ngIf='watchList && watchList.length'>
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                </tr>
+            </thead>
+            <tbody *ngFor='let ticker of watchList; let i = index'>
+                <tr *ngIf= '(i+1) === watchList.length && (i+1) %3 !==0'>
+                    <td>
+                      <pm-candles [ticker]="watchList[i-1]"></pm-candles>
+                    </td>
+ 
+                    <td>
+                      <pm-candles [ticker]="watchList[i]"></pm-candles>
+                    </td>
+                </tr>
+                <tr *ngIf= '(i+1) %3 !==0'>
+                    <td>
+                      <pm-candles [ticker]="watchList[i]"></pm-candles>
+                    </td>
+             
+                    <td>
+                      <pm-candles [ticker]="watchList[i - 1]"></pm-candles>
+                    </td>
+             
+                    <td>
+                      <pm-candles [ticker]="watchList[i - 2]"></pm-candles>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</html>

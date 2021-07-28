@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "f24e242d-2699-4a60-883d-2e966205c3cf"
+    "analytics": "25966e0b-559a-45fe-b9d4-ae4bd482836a"
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -100,7 +100,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/apexcharts/dist/apexcharts.min.js"]
           }
         }
       }

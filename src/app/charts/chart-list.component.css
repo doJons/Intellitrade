@@ -1,0 +1,10 @@
+.card{
+    width: 100vw;
+    margin:0px;
+    padding: 0px;
+    left: -250;
+}
+
+.table{
+    table-layout: fixed;
+}
