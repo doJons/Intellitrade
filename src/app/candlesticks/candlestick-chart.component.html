@@ -1,5 +1,6 @@
-<div id="chart">
-  {{ticker}}
+<div id="chart" sytle.background-color="getColor()">
+  <button (click)="binanceLauncher()">Binance</button>   {{ticker}}
+
   <apx-chart *ngIf="chartOptions"
     [series]="chartOptions.series"
     [chart]="chartOptions.chart"
@@ -7,4 +8,5 @@
     [yaxis]="chartOptions.yaxis"
     [title]="chartOptions.title"
   ></apx-chart>
+  {{description}}
 </div>

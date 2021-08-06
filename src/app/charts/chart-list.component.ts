@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Injectable, OnInit, OnChanges } from "@angular/core";
+import { ChangeDetectorRef, Component, Injectable, OnInit, OnChanges, Input } from "@angular/core";
 import { CandleStick } from "../candlesticks/candlestick";
 import { CandleStickService } from "../candlesticks/candlestick.service";
 
@@ -12,8 +12,8 @@ import { CandleStickService } from "../candlesticks/candlestick.service";
 export class ChartListComponent implements OnInit{
     pageTitle:string = "Ticker List";
     ticker:string = "ADAUSDT";
-    interval: string = "4h";
-    limit: string = "50";
+    @Input() interval: string = "4h";
+    @Input() limit: string = "50";
     candlesticks:CandleStick[];
     errorMessage: string;
     public watchList:string[] = [];
@@ -203,6 +203,7 @@ export class ChartListComponent implements OnInit{
             "BNTUSDT",
             "ONEUSDT",
             "QTUMUSDT",
+            "TRUUSDT"
          
         ]
 

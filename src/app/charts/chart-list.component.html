@@ -2,7 +2,10 @@
     <div>
         {{pageTitle}}
     </div>
-
+<div>
+  Interval: <input type="text" id="intervalTextBox" [(ngModel)] = 'interval'>
+  Limit: <input type="limit" id="limitTextBox" [(ngModel)] = 'limit'>
+</div>
     <div>
         <button (click)="searchLargeCaps()">Large Cap Coins</button>
         <button (click)="searchMidCaps()">Mid Cap Coins</button>
@@ -21,26 +24,28 @@
             <tbody *ngFor='let ticker of watchList; let i = index'>
                 <tr *ngIf= '(i+1) === watchList.length && (i+1) %3 !==0'>
                     <td>
-                      <pm-candles [ticker]="watchList[i-1]"></pm-candles>
+                      <pm-candles [ticker]="watchList[i-1]" [limit]= 'limit' [interval] = 'interval'></pm-candles>
                     </td>
  
                     <td>
-                      <pm-candles [ticker]="watchList[i]"></pm-candles>
+                      <pm-candles [ticker]="watchList[i]" [limit]= 'limit' [interval] = 'interval'></pm-candles>
                     </td>
                 </tr>
-                <tr *ngIf= '(i+1) %3 !==0'>
-                    <td>
-                      <pm-candles [ticker]="watchList[i]"></pm-candles>
-                    </td>
              
-                    <td>
-                      <pm-candles [ticker]="watchList[i - 1]"></pm-candles>
-                    </td>
-             
-                    <td>
-                      <pm-candles [ticker]="watchList[i - 2]"></pm-candles>
-                    </td>
-                </tr>
+              
+                <tr *ngIf= '(i+1) %3 ===0'>
+                  <td>
+                    <pm-candles [ticker]="watchList[i]" [limit]= 'limit' [interval] = 'interval'></pm-candles>
+                  </td>
+           
+                  <td>
+                    <pm-candles [ticker]="watchList[i - 1]" [limit]= 'limit' [interval] = 'interval' ></pm-candles>
+                  </td>
+           
+                  <td>
+                    <pm-candles [ticker]="watchList[i - 2]" [limit]= 'limit' [interval] = 'interval'></pm-candles>
+                  </td>
+              </tr>
             </tbody>
         </table>
     </div>
