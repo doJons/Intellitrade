@@ -2,7 +2,17 @@
     <div>
         {{pageTitle}}
     </div>
-<div>
+<div class="form-group">
+  <div class="form-control">
+    <label class="radio-inline">
+      <input type="radio" value="NearMin" name="algoType" [(ngModel)]= "algoType" > NearMin
+    </label>
+    <label class="radio-inline">
+      <input type="radio" value="RSI" name="algoType" [(ngModel)]= "algoType"> RSI
+    </label>
+ 
+  </div>
+
   Interval: <input type="text" id="intervalTextBox" [(ngModel)] = 'interval'>
   Limit: <input type="limit" id="limitTextBox" [(ngModel)] = 'limit'>
 </div>
@@ -24,26 +34,26 @@
             <tbody *ngFor='let ticker of watchList; let i = index'>
                 <tr *ngIf= '(i+1) === watchList.length && (i+1) %3 !==0'>
                     <td>
-                      <pm-candles [ticker]="watchList[i-1]" [limit]= 'limit' [interval] = 'interval'></pm-candles>
+                      <pm-candles [ticker]="watchList[i-1]" [limit]= 'limit' [interval] = 'interval' [algoType] ='algoType'></pm-candles>
                     </td>
  
                     <td>
-                      <pm-candles [ticker]="watchList[i]" [limit]= 'limit' [interval] = 'interval'></pm-candles>
+                      <pm-candles [ticker]="watchList[i]" [limit]= 'limit' [interval] = 'interval' [algoType] ='algoType'></pm-candles>
                     </td>
                 </tr>
              
               
                 <tr *ngIf= '(i+1) %3 ===0'>
                   <td>
-                    <pm-candles [ticker]="watchList[i]" [limit]= 'limit' [interval] = 'interval'></pm-candles>
+                    <pm-candles [ticker]="watchList[i]" [limit]= 'limit' [interval] = 'interval' [algoType] ='algoType'></pm-candles>
                   </td>
            
                   <td>
-                    <pm-candles [ticker]="watchList[i - 1]" [limit]= 'limit' [interval] = 'interval' ></pm-candles>
+                    <pm-candles [ticker]="watchList[i - 1]" [limit]= 'limit' [interval] = 'interval' [algoType] ='algoType'></pm-candles>
                   </td>
            
                   <td>
-                    <pm-candles [ticker]="watchList[i - 2]" [limit]= 'limit' [interval] = 'interval'></pm-candles>
+                    <pm-candles [ticker]="watchList[i - 2]" [limit]= 'limit' [interval] = 'interval' [algoType] ='algoType'></pm-candles>
                   </td>
               </tr>
             </tbody>

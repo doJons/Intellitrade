@@ -17,7 +17,11 @@ export class ChartListComponent implements OnInit{
     candlesticks:CandleStick[];
     errorMessage: string;
     public watchList:string[] = [];
+    @Input() algoType:string = "NearMin";
+
     constructor(private candleStickService:CandleStickService, private cd:ChangeDetectorRef){}
+
+  
     getCandleSticks(ticker:string, interval:string, limit:string){
         this.candleStickService.getCandleSticks(ticker, interval, limit).subscribe({
             next:candlesticks => {

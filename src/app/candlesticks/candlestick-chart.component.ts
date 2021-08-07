@@ -14,10 +14,7 @@ export type ChartOptions = {
   title: ApexTitleSubtitle;
 };
 
-export enum AgloType{
-      RSI,
-      NEARMIN
-}
+
 export enum NearMin{
     Init,
     GoodBuy,
@@ -38,14 +35,13 @@ export class CandleStickChartComponent implements OnInit{
     description:string = "";
     binanceLink:string = "";
 
+
     candlesticks:CandleStick[];
     @ViewChild("chart") chart: ChartComponent
+    @Input() algoType:string = "NearMin";
 
-    AlgoType = AgloType;
-    algoType = AgloType.NEARMIN;
-    NearMin = NearMin;
-    nearMin = NearMin.Init;
     chartColor = "white";
+
      
     public chartOptions: Partial<ChartOptions> | any;
 
@@ -54,7 +50,7 @@ export class CandleStickChartComponent implements OnInit{
      
     }
 
-    
+   
     createChartData(candlesticks:CandleStick[]){
       var data = [];
       for(var i =0; i < candlesticks.length; i++){
@@ -77,13 +73,7 @@ export class CandleStickChartComponent implements OnInit{
       this.description = description;
 
     }
-    getColor(){
-
-      if(this.nearMin== NearMin.GoodBuy){
-        return 'green';
-      }
-      return 'white';
-    }
+  
     nearMinAlgo(candlesticks:CandleStick[]){
       var chunk = parseInt(this.limit) *.25 | 0;
       var range = 0;
@@ -107,11 +97,11 @@ export class CandleStickChartComponent implements OnInit{
 
       var currentPrice = parseFloat(this.candlesticks[this.candlesticks.length-1].open);
       if(currentPrice < avg){
-        this.nearMin = NearMin.GoodBuy;
+        this.algoType = "GoodBuy";
         this.setColorAndDescription("LightGreen", "Good Buy, current price is lower then the NearMin Algo avg.")
       }
       
-      if(this.nearMin == NearMin.GoodBuy){
+      if(this.algoType == "GoodBuy"){
         this.chartColor = "LightGreen";
       }
 
@@ -147,7 +137,10 @@ export class CandleStickChartComponent implements OnInit{
                         var candlestick = new CandleStick(candlesticks[i]);
                         this.candlesticks.push(candlestick);
                     }
-                    this.nearMinAlgo(this.candlesticks);
+                    if(this.algoType == "NearMin"){
+                      this.nearMinAlgo(this.candlesticks);
+                    }
+                 
 
                     var data = this.createChartData(this.candlesticks);
                     
